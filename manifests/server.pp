@@ -9,6 +9,7 @@ class graylog::server (
   $java_initial_heap_size = $graylog::params::java_initial_heap_size,
   $java_max_heap_size = $graylog::params::java_max_heap_size,
   $java_opts = $graylog::params::java_opts,
+  $command_wrapper = $graylog::params::command_wrapper,
   Boolean $restart_on_package_upgrade = false,
 ) inherits graylog::params {
   if $config == undef {
@@ -62,7 +63,8 @@ class graylog::server (
           {
             'java_initial_heap_size' => $java_initial_heap_size,
             'java_max_heap_size'     => $java_max_heap_size,
-            'java_opts'              => $java_opts
+            'java_opts'              => $java_opts,
+            'command_wrapper'        => $command_wrapper
         }),
       }
     }
@@ -76,7 +78,8 @@ class graylog::server (
           {
             'java_initial_heap_size' => $java_initial_heap_size,
             'java_max_heap_size'     => $java_max_heap_size,
-            'java_opts'              => $java_opts
+            'java_opts'              => $java_opts,
+            'command_wrapper'        => $command_wrapper
         }),
       }
     }

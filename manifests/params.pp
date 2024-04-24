@@ -19,4 +19,5 @@ class graylog::params {
   $java_initial_heap_size = '1g'
   $java_max_heap_size = '1g'
   $java_opts = ''
+  $command_wrapper = ''
 }

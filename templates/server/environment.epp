@@ -1,4 +1,4 @@
-<%- | String $java_initial_heap_size = '1g', String $java_max_heap_size = '1g', String $java_opts = "" | -%>
+<%- | String $java_initial_heap_size = '1g', String $java_max_heap_size = '1g', String $java_opts = "", String $command_wrapper = "" | -%>
 # Path to the java executable.
 #JAVA=/usr/bin/java
 
@@ -16,4 +16,4 @@ GRAYLOG_SERVER_ARGS=""
 
 # Program that will be used to wrap the graylog-server command. Useful to
 # support programs like authbind.
-GRAYLOG_COMMAND_WRAPPER=""
+GRAYLOG_COMMAND_WRAPPER="<%= $command_wrapper %>"
