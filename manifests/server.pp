@@ -50,7 +50,8 @@ class graylog::server (
     content => template("${module_name}/server/graylog.conf.erb"),
   }
 
-  case $::osfamily {
+  $_osfamily=$facts['os']['family']
+  case $_osfamily {
     'debian': {
       file { '/etc/default/graylog-server':
         ensure  => file,
@@ -80,7 +81,7 @@ class graylog::server (
       }
     }
     default: {
-      fail("${::osfamily} is not supported!")
+      fail("${$_osfamily} is not supported!")
     }
   }
 

@@ -6,17 +6,19 @@ class graylog::repository (
 ) inherits graylog::params {
   anchor { 'graylog::repository::begin': }
 
+  $_osfamily=$facts['os']['family']
+  
   if $url == undef {
-    $graylog_repo_url = $::osfamily ? {
+    $graylog_repo_url = $_osfamily ? {
       'debian' => 'https://downloads.graylog.org/repo/debian/',
       'redhat' => "https://downloads.graylog.org/repo/el/${release}/${version}/\$basearch/",
-      default  => fail("${::osfamily} is not supported!"),
+      default  => fail("${_osfamily} is not supported!"),
       }
   } else {
     $graylog_repo_url = $url
   }
 
-  case $::osfamily {
+  case $_osfamily {
     'debian': {
       class { 'graylog::repository::apt':
         url     => $graylog_repo_url,
@@ -32,7 +34,7 @@ class graylog::repository (
       }
     }
     default: {
-      fail("${::osfamily} is not supported!")
+      fail("${_osfamily} is not supported!")
     }
   }
   anchor { 'graylog::repository::end': }
